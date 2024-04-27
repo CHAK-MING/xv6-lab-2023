@@ -1,0 +1,7 @@
+Why are there missing keys with 2 threads, but not with 1 thread? 
+Identify a sequence of events with 2 threads that can lead to a key being missing.
+
+在单线程的情况下，每个操作都是顺序执行的，不会存在同时并发的访问哈希表的情况。
+如果有多个线程同时并发访问哈希表，可能会有以下的情况导致键丢失：
+① A和B两个线程同时调用put函数中的insert处，还未进到函数内部，参数是一样的。
+② 线程A插入完之后，切换到线程B，在插入的时候会导致A插入的key丢失。
